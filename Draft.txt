@@ -1,0 +1,86 @@
+private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+			int selectedindex = Convert.ToInt32(dgTest.SelectedIndex.ToString());
+			if (selectedindex == -1)
+            {
+				MessageBox.Show($"Выбрана пустая стока!", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+            }
+			MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить будильник?", "Предупреждение?", MessageBoxButton.YesNo, MessageBoxImage.Information);
+			if (result == MessageBoxResult.Yes)
+            {
+                string sql = $@"
+				delete from Alarms
+				where AlarmID = {dt.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][0]}";
+
+                conDB.SqliteModification(sql);
+
+				MessageBox.Show($"Удалён будильник!\nНазвание: {dt.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][1]}\n" +
+								$"Время: {dt.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][2]}", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+				SettingsForListAlarmsTab();
+				//MessageBox.Show((dtDelete.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][0]).ToString());
+			}
+		}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ResizeMode="NoResize"
+		WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int selectedindex = Convert.ToInt32(dgTest.SelectedIndex.ToString());
+            if (selectedindex == -1)
+            {
+                MessageBox.Show($"Выбрана пустая стока!", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить будильник?", "Предупреждение?", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                string sql = $@"
+				delete from Alarms
+				where AlarmID = {dt.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][0]}";
+
+                conDB.SqliteModification(sql);
+
+                MessageBox.Show($"Удалён будильник!\nНазвание: {dt.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][1]}\n" +
+                                $"Время: {dt.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][2]}", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                SettingsForListAlarmsTab();
+                //MessageBox.Show((dtDelete.Rows[Convert.ToInt32(dgTest.SelectedIndex.ToString())][0]).ToString());
+            }
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+private void CbxStartWithWindows_Checked(object sender, RoutedEventArgs e)
+        {
+			RegistryKey regKey = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+
+			regKey.DeleteValue("MedHelperAlarm");
+
+			sql = $@"
+								update Settings 
+								set [AutoStart] = 0
+								where [SettingID] = 1";
+
+			conDB.SqliteModification(sql);
+
+			TestVoid();
+
+			if (cbxStartWithWindows.IsChecked == true)
+            {
+				regKey.SetValue("MedHelperAlarm", Assembly.GetExecutingAssembly().Location);
+
+				sql = $@"
+								update Settings 
+								set [AutoStart] = 1
+								where [SettingID] = 1";
+
+				conDB.SqliteModification(sql);
+			}
+		}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

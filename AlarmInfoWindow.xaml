@@ -1,0 +1,38 @@
+﻿<Window x:Class="MedHelper.AlarmInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedHelper"
+        mc:Ignorable="d"
+        Height="200" Width="420"
+        ResizeMode="NoResize"
+		WindowStartupLocation="CenterScreen" 
+        WindowStyle="None">
+    <Canvas>
+        <TextBox x:Name="tbxAlarmsName" FontSize="18" IsEnabled="False" Height="30" Width="400" Canvas.Left="10" Canvas.Top="10"/>
+
+        <Button x:Name="btnPlusHour" Click="BtnPlusHour_Click" IsEnabled="False" Style="{DynamicResource btnPlus}" Canvas.Left="10" Canvas.Top="49"/>
+        <Button x:Name="btnPlusMinute" Click="BtnPlusMinute_Click" IsEnabled="False" Style="{DynamicResource btnPlus}" Canvas.Left="109" Canvas.Top="49"/>
+        <TextBox x:Name="tbxHour" Text="0" FontSize="65" IsEnabled="False" Height="90" Width="75" Canvas.Left="10" Canvas.Top="74"/>
+        
+        <Label x:Name="lblForDoubleDot" Content=":" FontSize="65" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="90" Canvas.Left="85" Canvas.Top="74"/>
+        
+        <TextBox x:Name="tbxMinute" Text="0" IsEnabled="False" FontSize="65" Height="90" Width="75" Canvas.Left="109" Canvas.Top="74"/>
+        <Button x:Name="btnMinusHour" Click="BtnMinusHour_Click" IsEnabled="False" Style="{DynamicResource btnMinus}" Canvas.Left="10" Canvas.Top="164"/>
+        <Button x:Name="btnMinusMinute" Click="BtnMinusMinute_Click" IsEnabled="False" Style="{DynamicResource btnMinus}" Canvas.Left="109" Canvas.Top="164"/>
+
+        <Border Style="{DynamicResource Border}" Height="140" Width="221" Canvas.Left="189" Canvas.Top="49">
+            <Canvas>
+                <Button x:Name="btnUpdate" Click="BtnUpdate_Click" Content="Изменить" FontSize="16" Width="219"/>
+                <Button x:Name="btnDelete" Click="BtnDelete_Click" Content="Удалить" FontSize="16" Canvas.Top="30" Width="219"/>
+                <Button x:Name="btnCancel" Click="BtnCancel_Click" Content="Отмена" FontSize="16" Visibility="Hidden" Canvas.Top="30" Width="219"/>
+                <Button x:Name="btnOnOff" Click="BtnOnOff_Click" FontSize="16" Canvas.Top="83" Width="219" Height="25"/>
+                <Button x:Name="btnBack" Click="BtnBack_Click" Content="Назад" FontSize="16" Canvas.Top="113" Width="219"/>
+            </Canvas>
+
+        </Border>
+
+
+    </Canvas>
+</Window>

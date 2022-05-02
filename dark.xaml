@@ -1,0 +1,122 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="TextBox">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#b9bbbe"/>
+        <Setter Property="Background" Value="#36393f"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#b9bbbe"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="lblHelp">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#b9bbbe"/>
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text, ElementName=tbxAlarmsName}" Value="">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#f0fdff"/>
+        <Setter Property="Background" Value="#5a68a6"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="btnPlus">
+        <Setter Property="Content" Value="+"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="75"/>
+        <Setter Property="Foreground" Value="#f0fdff"/>
+        <Setter Property="Background" Value="#5a68a6"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="btnMinus">
+        <Setter Property="Content" Value="-"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="75"/>
+        <Setter Property="Foreground" Value="#f0fdff"/>
+        <Setter Property="Background" Value="#5a68a6"/>
+    </Style>
+
+    <Style TargetType="RadioButton">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#f0fdff"/>
+    </Style>
+
+	<Style TargetType="DataGrid">
+		<Setter Property="ItemsSource" Value="{Binding}"/>
+		<Setter Property="AutoGenerateColumns" Value="False"/>
+		<Setter Property="IsReadOnly" Value="True"/>
+		<Setter Property="ColumnWidth" Value="*"/>
+		<Setter Property="Foreground" Value="#f0fdff"/>
+		<Setter Property="Background" Value="#36393f"/>
+		<Setter Property="RowBackground" Value="#5a68a6"/>
+		<Setter Property="AlternatingRowBackground" Value="#72767d"/>
+	</Style>
+
+	<Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+		<Setter Property="Background" Value="#36393f" />
+	</Style>
+
+	<Style TargetType="Border" x:Key="Border">
+        <Setter Property="BorderBrush" Value="#b9bbbe"/>
+        <Setter Property="Background" Value="#72767d"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#5a68a6"/>
+    </Style>
+    
+    <Style TargetType="Canvas">
+        <Setter Property="Background" Value="#36393f"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="lblNetInfo">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+	<Style TargetType="Window">
+		<Setter Property="Background" Value="#36393f"/>
+	</Style>
+
+    <Style TargetType="StackPanel">
+        <Setter Property="Background" Value="#36393f"/>
+    </Style>
+    
+    <Style TargetType="DockPanel">
+        <Setter Property="Background" Value="#36393f"/>
+    </Style>
+
+    <Style TargetType="TabItem">
+        <Setter Property="Background" Value="#36393f"/>
+        <Setter Property="Foreground" Value="#f0fdff"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="#36393f"/>
+    </Style>
+
+</ResourceDictionary>
