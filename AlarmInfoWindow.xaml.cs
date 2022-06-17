@@ -13,34 +13,35 @@ namespace MedHelper
 
 		public bool isChanged = false;
 
-		public int p_id;
-		public string p_name;
-		public int p_hour, p_minute;
-		public bool p_isActive;
+		//public int p_id;
+		//public string p_name;
+		//public int p_hour, p_minute;
+		//public bool p_isActive;
 
-        public AlarmInfoWindow(int mw_id, string mw_name, int mw_hour, int mw_minute, bool mw_isActive)
+        //public AlarmInfoWindow(int mw_id, string mw_name, int mw_hour, int mw_minute, bool mw_isActive)
+		public AlarmInfoWindow()
         {
             InitializeComponent();
 
-			p_id = mw_id;
-            p_name = mw_name;
-			p_hour = mw_hour;
-			p_minute = mw_minute;
-			p_isActive = mw_isActive;
+			//p_id = mw_id;
+			//p_name = mw_name;
+			//p_hour = mw_hour;
+			//p_minute = mw_minute;
+			//p_isActive = mw_isActive;
 
-            tbxAlarmsName.Text = p_name;
-            tbxHour.Text = p_hour.ToString();
-            tbxMinute.Text = p_minute.ToString();
+			tbxAlarmsName.Text = Globals.nameAlarmDt;
+			tbxHour.Text = Globals.hourAlarmDt.ToString();
+			tbxMinute.Text = Globals.minuteAlarmDt.ToString();
 
-            if (p_isActive == true)
+            if (Globals.isActiveAlarmDt == true)
             {
                 btnOnOff.Content = "Деактивировать";
-				p_isActive = false;
+				Globals.isActiveAlarmDt = false;
 			}
             else
             {
 				btnOnOff.Content = "Активировать";
-				p_isActive = true;
+				Globals.isActiveAlarmDt = true;
 			}
         }
 
@@ -71,29 +72,29 @@ namespace MedHelper
             {
 				string sql = $@"
 								delete from Alarms
-								where AlarmID = {p_id}";
+								where AlarmID = {Globals.id}";
 
 				conDB.SqliteModification(sql);
-				MessageBox.Show($"Удалён будильник!\nНазвание: {p_name}\n" +
-								$"Время: {p_hour}:{p_minute}", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show($"Удалён будильник!\nНазвание: {Globals.nameAlarmDt}\n" +
+								$"Время: {Globals.hourAlarmDt}:{Globals.minuteAlarmDt}", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Information);
 				this.Close();
 			}
 		}
 
         private void BtnOnOff_Click(object sender, RoutedEventArgs e)
         {
-            if (p_isActive == true)
+            if (Globals.isActiveAlarmDt == true)
             {
                 btnOnOff.Content = "Деактивировать";
-                p_isActive = false;
+				Globals.isActiveAlarmDt = false;
                 SwitchOnOff(1);
 				return;
 			}
 
-            if (p_isActive == false)
+            if (Globals.isActiveAlarmDt == false)
 			{
 				btnOnOff.Content = "Активировать";
-				p_isActive = true;
+				Globals.isActiveAlarmDt = true;
                 SwitchOnOff(0);
 				return;
 			}
@@ -104,7 +105,7 @@ namespace MedHelper
 			string sql = $@"
 							update Alarms 
 							set [IsActive] = {onoff}
-							where [AlarmID] = {p_id}";
+							where [AlarmID] = {Globals.id}";
 
 			conDB.SqliteModification(sql);
 		}
@@ -127,18 +128,18 @@ namespace MedHelper
                 if (tbxAlarmsName.SelectionLength > 30)
                 {
                     MessageBox.Show("Колличество символов в названии превышает допустимый лимит в 30 символов!", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Error);
-					tbxAlarmsName.Text = p_name;
-					tbxHour.Text = p_hour.ToString();
-					tbxMinute.Text = p_minute.ToString();
+					tbxAlarmsName.Text = Globals.nameAlarmDt;
+					tbxHour.Text = Globals.hourAlarmDt.ToString();
+					tbxMinute.Text = Globals.minuteAlarmDt.ToString();
 					return;
                 }
 
                 if (tbxAlarmsName.Text == string.Empty || tbxHour.Text == string.Empty || tbxMinute.Text == string.Empty)
                 {
                     MessageBox.Show("Нельзя оставлять поля пустыми!", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Error);
-					tbxAlarmsName.Text = p_name;
-					tbxHour.Text = p_hour.ToString();
-					tbxMinute.Text = p_minute.ToString();
+					tbxAlarmsName.Text = Globals.nameAlarmDt;
+					tbxHour.Text = Globals.hourAlarmDt.ToString();
+					tbxMinute.Text = Globals.minuteAlarmDt.ToString();
 					return;
                 }
 
@@ -147,9 +148,9 @@ namespace MedHelper
                 if ((anothersymbolminute && anothersymbolhour) == false)
                 {
                     MessageBox.Show("Символы, кроме чисел, нельзя вписывать в время!", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Error);
-					tbxAlarmsName.Text = p_name;
-					tbxHour.Text = p_hour.ToString();
-					tbxMinute.Text = p_minute.ToString();
+					tbxAlarmsName.Text = Globals.nameAlarmDt;
+					tbxHour.Text = Globals.hourAlarmDt.ToString();
+					tbxMinute.Text = Globals.minuteAlarmDt.ToString();
 					return;
                 }
 
@@ -158,9 +159,9 @@ namespace MedHelper
                 if (checkmin || checkhour)
                 {
                     MessageBox.Show($"Неверно введенно время!", "Предупреждение!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    tbxAlarmsName.Text = p_name;
-                    tbxHour.Text = p_hour.ToString();
-                    tbxMinute.Text = p_minute.ToString();
+                    tbxAlarmsName.Text = Globals.nameAlarmDt;
+                    tbxHour.Text = Globals.hourAlarmDt.ToString();
+                    tbxMinute.Text = Globals.minuteAlarmDt.ToString();
                     return;
                 }
                 else
@@ -168,7 +169,7 @@ namespace MedHelper
                     string sql = $@"
 								update Alarms 
 								set [Name] = '{tbxAlarmsName.Text}', [Hour] = {Convert.ToInt32(tbxHour.Text)}, [Minute] = {Convert.ToInt32(tbxMinute.Text)}, [IsActive] = 1 
-								where [AlarmID] = {p_id}";
+								where [AlarmID] = {Globals.id}";
 
                     conDB.SqliteModification(sql);
 

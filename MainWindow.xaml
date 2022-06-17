@@ -93,22 +93,6 @@
                                 <RadioButton x:Name="rbn2Hours" Checked="Rbn2Hours_Checked" GroupName="rbnsNotification" Content="Каждые 2 часа" Width="258" Canvas.Left="10" Canvas.Top="111" />
                             </Canvas>
                         </Border>
-
-                        <!--<Border Style="{DynamicResource Border}" Height="70" Width="498" Canvas.Left="10" Canvas.Top="195">
-                            <Border.ToolTip>
-                                <ToolTip Content="Будильник не предусмотрен под другую музыку!"/>
-                            </Border.ToolTip>
-                            <Canvas>
-                                <Label Content="Звуковое оповещение" FontSize="16" Width="496"/>
-                                <ComboBox x:Name="cbxMusic" FontSize="16" Canvas.Top="31" Width="496">
-                                    <ComboBoxItem Content="Test"/>
-                                    <ComboBoxItem Content="Test"/>
-                                    <ComboBoxItem Content="Test"/>
-                                </ComboBox>
-                            </Canvas>
-                        </Border>-->
-
-
                     </Canvas>
                 </TabItem>
 

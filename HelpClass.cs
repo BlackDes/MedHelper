@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace MedHelper
 {
-	//public static class Globals
-	//{
-	//	public static bool autoStartCheck;
-	//}
+    public static class Globals
+    {
+		public static int id;
+		public static string nameAlarmDt;
+		public static int hourAlarmDt;
+		public static int minuteAlarmDt;
+		public static bool isActiveAlarmDt;
+	}
 
-	class HelpClass
+    class HelpClass
 	{
 		public void NumberHourMinuterHelp(System.Windows.Controls.TextBox tbx, int numberOne, int numberTwo, int numberCalculate)
 		{
@@ -44,18 +48,5 @@ namespace MedHelper
 				}
 			}
 		}
-
-		//public void HelpVoid4StartButton(System.Windows.Controls.Button btn, string textMode, bool checkHelp, int AutoStart)
-		//{
-		//	btn.Content = $"Автоматически запускать вместе с Windows | {textMode} Включено Отключено";
-		//	Globals.autoStartCheck = checkHelp;
-
-		//	string sql = $@"
-		//					update Settings 
-		//					set [AutoStart] = {AutoStart}
-		//					where [SettingID] = 1";
-
-		//	conDB.SqliteModification(sql);
-		//}
 	}
 }

@@ -93,7 +93,6 @@ namespace MedHelper
 				new ToastContentBuilder()
 				.AddText($"{dtAlarm.Rows[0][1]}")
 				.AddText($"Время: {dtAlarm.Rows[0][2]}:{dtAlarm.Rows[0][3]}")
-				//.AddText($"Если вы хотите ещё раз использовать этот будильник, то перейдите во вкладку «‎Будильники» и активируйте его!»‎")
 				.Show();
 
 				sql = $@"
@@ -158,7 +157,7 @@ namespace MedHelper
 
 		private void SettingsForAddAlarmTab()
 		{
-			//класс создан в будущего развития
+
 		}
 
 		private void SettingsForListAlarmsTab()
@@ -381,17 +380,14 @@ namespace MedHelper
 			{
 				try
 				{
-					int id = Convert.ToInt32(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][0]);
-					string nameAlarmDt = dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][1].ToString();
-					int hourAlarmDt = Convert.ToInt32(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][2]);
-					int minuteAlarmDt = Convert.ToInt32(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][3]);
-					bool isActiveAlarmDt = Convert.ToBoolean(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][5]);
+					Globals.id = Convert.ToInt32(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][0]);
+					Globals.nameAlarmDt = dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][1].ToString();
+					Globals.hourAlarmDt = Convert.ToInt32(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][2]);
+					Globals.minuteAlarmDt = Convert.ToInt32(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][3]);
+					Globals.isActiveAlarmDt = Convert.ToBoolean(dt.Rows[Convert.ToInt32(dgTest.SelectedIndex)][5]);
 
-					AlarmInfoWindow aiw = new AlarmInfoWindow(id, nameAlarmDt, hourAlarmDt, minuteAlarmDt, isActiveAlarmDt);
-					aiw.Closed += (sender2, e2) =>
-					{
-						SettingsForListAlarmsTab();
-					};
+					//AlarmInfoWindow aiw = new AlarmInfoWindow(id, nameAlarmDt, hourAlarmDt, minuteAlarmDt, isActiveAlarmDt);
+					AlarmInfoWindow aiw = new AlarmInfoWindow();
 
 					aiw.ShowDialog();
 				}
@@ -457,7 +453,6 @@ namespace MedHelper
 		}
 		#endregion
 		#endregion
-
 
 		#region Изменение цвета приложения
 		private void RbnLight_Checked(object sender, RoutedEventArgs e)
@@ -544,23 +539,5 @@ namespace MedHelper
 		}
 		#endregion
 		
-
-
-		private void TestVoid()
-		{
-			MessageBox.Show("ВСЁ РАБОТАЕТ!", "УСПЕХ!", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-			//TimeSpan t = new TimeSpan(20, 35, 0);
-			//TimeSpan i = new TimeSpan(1, 45, 0);
-
-			//MessageBox.Show($"{t + i}");
-
-			TimeSpan t1 = new TimeSpan(hourOnApp, minuteOnApp, 0);
-			TimeSpan i1 = new TimeSpan(0, 20, 0);
-
-			TimeSpan result = t1 + i1;
-
-			MessageBox.Show($"{result:hh':'mm}");
-		}
 	}
 }
